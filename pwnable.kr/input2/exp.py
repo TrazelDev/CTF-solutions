@@ -40,10 +40,15 @@ def generate_specail_file():
 def send_packet():
     payload = b"\xde\xad\xbe\xef"
 
-    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sok:
-        sok.connect((HOST, PORT))
-        sok.sendall(payload)
-        print(f"Sent: {payload.hex()}")
+    # option 1:
+    # with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sok:
+    #     sok.connect((HOST, PORT))
+    #     sok.sendall(payload)
+    #     print(f"Sent: {payload.hex()}")
+
+    # option 2:
+    con = remote('localhost', PORT)
+    con.sendline(payload)
 
 
 def get_process():
